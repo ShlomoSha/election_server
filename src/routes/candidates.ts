@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { initDatabase } from "../services/candidates";
+import { getCandidateList, initDatabase } from "../services/candidates";
 
 export const sid = async (req: Request, res: Response) => {
     try {
@@ -9,4 +9,14 @@ export const sid = async (req: Request, res: Response) => {
         console.log(err)
         res.sendStatus(400)
     }
+}
+
+export const gerList = async (req: Request, res: Response) => {
+    try {
+        const list = await getCandidateList();
+        res.json(list);
+      } catch (err) {
+        console.log(err);
+        res.sendStatus(400);
+      }
 }

@@ -1,4 +1,5 @@
 import candidate from "../models/candidate";
+import Candidate from "../models/candidate"
 
 export const initDatabase = async () => {
     try {
@@ -29,6 +30,20 @@ export const initDatabase = async () => {
             await newCand.save()
           }
     } catch (err) {
-        console.log(err)
+      console.log(
+        "Error accured while creating initial state of candidates",
+        err
+      );
     }
+}
+
+
+export const getCandidateList = async () => {
+  try {
+    const list = await Candidate.find({})
+    return list
+  } catch (err) {
+    console.log(err)
+    throw err
+}
 }
