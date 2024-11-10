@@ -1,4 +1,5 @@
 import express  from "express";
+import cors from 'cors'
 import 'dotenv/config'
 import userController from './controllers/users'
 import adminController from './controllers/admin'
@@ -13,6 +14,8 @@ const app = express()
 connectToMongo()
 
 app.use(express.json())
+
+app.use(cors())
 
 app.use("/api/users", userController)
 app.use("/api/admin", adminController)
